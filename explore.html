@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Explore Recipes – Stackly</title>
+  <!-- Google Fonts (needs internet; the site falls back to system fonts without it) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- All styling lives in this one file -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- Animated glowing blobs behind the page (pure decoration) -->
+<div class="blobs"><i></i><i></i><i></i></div>
+
+<!-- ================= NAVIGATION BAR (same on every page) ================= -->
+<header class="navbar"><div class="container nav-inner">
+  <a href="index.html" class="logo"><img src="images/stackly_logo_white_cropped.png" alt="Stackly" width="196" height="56" class="logo-img"></a>
+  <!-- Hamburger button: only visible on phones -->
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="explore.html">Explore Recipes</a>
+    <!-- The red number = how many recipes are in the meal plan (filled in by app.js) -->
+    <a href="meal-plan.html">My Meal Plan <b id="planBadge" class="count">0</b></a>
+  </nav>
+</div></header>
+
+<main><section class="section page-top"><div class="container">
+  <h1 class="title">Explore recipes</h1>
+
+  <!-- ===== SEARCH + SORT + FAVOURITES (js/explore.js reads these by id) ===== -->
+  <div class="toolbar">
+    <input id="search" type="search" placeholder="Search recipes by name…" aria-label="Search recipes">
+    <select id="sort" aria-label="Sort recipes">
+      <option value="">Sort: Default</option>
+      <option value="fast">Cooking time: shortest first</option>
+      <option value="slow">Cooking time: longest first</option>
+      <option value="az">Name: A to Z</option>
+    </select>
+    <label class="check"><input type="checkbox" id="favOnly"> Favourites only</label>
+  </div>
+
+  <!-- ===== CATEGORY FILTER BUTTONS: data-cat must equal the category text on the cards ===== -->
+  <div class="chips" id="chips">
+    <button class="chip" data-cat="All">All</button>
+    <button class="chip" data-cat="Breakfast">Breakfast</button>
+    <button class="chip" data-cat="Lunch">Lunch</button>
+    <button class="chip" data-cat="Dinner">Dinner</button>
+    <button class="chip" data-cat="Desserts">Desserts</button>
+  </div>
+
+  <p class="meta" id="count" aria-live="polite"></p>
+
+  <!-- ===== ALL RECIPE CARDS (12 recipes) =====
+       Each card is plain HTML. JavaScript reads the name, category, time and image
+       straight from the card, so editing the card is all you need to do. -->
+  <div class="grid" id="recipeGrid">
+
+    <!-- ===== RECIPE CARD 1: Fluffy Pancakes ===== -->
+    <article class="card reveal" style="--d:0ms" data-id="1">
+      <div class="card-img">
+        <!-- 👉 IMAGE: change the file name inside src="" to use a different picture -->
+        <img src="images/fluffy_pancakes.webp" alt="Fluffy Pancakes" loading="lazy">
+        <button class="fav" data-action="fav" aria-label="Favourite Fluffy Pancakes">♥</button>
+        <span class="badge">Breakfast</span>
+      </div>
+      <div class="card-body">
+        <h3>Fluffy Pancakes</h3>
+        <p class="meta">⏱ 20 min</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" data-action="view">View Recipe</button>
+          <button class="btn btn-ghost" data-action="plan">＋ Plan</button>
+        </div>
+      </div>
+    </article>
+    <!-- ===== RECIPE CARD 2: Avocado Toast ===== -->
+    <article class="card reveal" style="--d:70ms" data-id="2">
+      <div class="card-img">
+        <!-- 👉 IMAGE: change the file name inside src="" to use a different picture -->
+        <img src="images/avocado_toast (1).webp" alt="Avocado Toast" loading="lazy">
+        <button class="fav" data-action="fav" aria-label="Favourite Avocado Toast">♥</button>
+        <span class="badge">Breakfast</span>
+      </div>
+      <div class="card-body">
+        <h3>Avocado Toast</h3>
+        <p class="meta">⏱ 10 min</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" data-action="view">View Recipe</button>
+          <button class="btn btn-ghost" data-action="plan">＋ Plan</button>
+        </div>
+      </div>
+    </article>
+    <!-- ===== RECIPE CARD 3: Masala Dosa ===== -->
+    <article class="card reveal" style="--d:140ms" data-id="3">
+      <div class="card-img">
+        <!-- 👉 IMAGE: change the file name inside src="" to use a different picture -->
+        <img src="images/masala_dosa.webp" alt="Masala Dosa" loading="lazy">
+        <button class="fav" data-action="fav" aria-label="Favourite Masala Dosa">♥</button>
+        <span class="badge">Breakfast</span>
+      </div>
+      <div class="card-body">
+        <h3>Masala Dosa</h3>
+        <p class="meta">⏱ 40 min</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" data-action="view">View Recipe</button>
+          <button class="btn btn-ghost" data-action="plan">＋ Plan</button>
+        </div>
+      </div>
+    </article>
+    <!-- ===== RECIPE CARD 4: Veggie Buddha Bowl ===== -->
+    <article class="card reveal" style="--d:210ms" data-id="4">
+      <div class="card-img">
+        <!-- 👉 IMAGE: change the file name inside src="" to use a different picture -->
+        <img src="images/veggie_buddha_bowl.webp" alt="Veggie Buddha Bowl" loading="lazy">
+        <button class="fav" data-action="fav" aria-label="Favourite Veggie Buddha Bowl">♥</button>
+        <span class="badge">Lunch</span>
+      </div>
+      <div class="card-body">
+        <h3>Veggie Buddha Bowl</h3>
+        <p class="meta">⏱ 25 min</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" data-action="view">View Recipe</button>
+          <button class="btn btn-ghost" data-action="plan">＋ Plan</button>
+        </div>
+      </div>
+    </article>
+    <!-- ===== RECIPE CARD 5: Chicken Caesar Wrap ===== -->
+    <article class="card reveal" style="--d:280ms" data-id="5">
+      <div class="card-img">
+        <!-- 👉 IMAGE: change the file name inside src="" to use a different picture -->
+        <img src="images/chicken_caesar_wrap.webp" alt="Chicken Caesar Wrap" loading="lazy">
+        <button class="fav" data-action="fav" aria-label="Favourite Chicken Caesar Wrap">♥</button>
+        <span class="badge">Lunch</span>
+      </div>
+      <div class="card-body">
+        <h3>Chicken Caesar Wrap</h3>
+        <p class="meta">⏱ 15 min</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" data-action="view">View Recipe</button>
+          <button class="btn btn-ghost" data-action="plan">＋ Plan</button>
+        </div>
+      </div>
+    </article>
+    <!-- ===== RECIPE CARD 6: Paneer Butter Masala ===== -->
+    <article class="card reveal" style="--d:350ms" data-id="6">
+      <div class="card-img">
+        <!-- 👉 IMAGE: change the file name inside src="" to use a different picture -->
+        <img src="images/paneer_butter_masala.webp" alt="Paneer Butter Masala" loading="lazy">
+        <button class="fav" data-action="fav" aria-label="Favourite Paneer Butter Masala">♥</button>
+        <span class="badge">Lunch</span>
+      </div>
+      <div class="card-body">
+        <h3>Paneer Butter Masala</h3>
+        <p class="meta">⏱ 35 min</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" data-action="view">View Recipe</button>
+          <button class="btn btn-ghost" data-action="plan">＋ Plan</button>
+        </div>
+      </div>
+    </article>
+    <!-- ===== RECIPE CARD 7: Spaghetti Carbonara ===== -->
+    <article class="card reveal" style="--d:0ms" data-id="7">
+      <div class="card-img">
+        <!-- 👉 IMAGE: change the file name inside src="" to use a different picture -->
+        <img src="images/spaghetti_carbonara.webp" alt="Spaghetti Carbonara" loading="lazy">
+        <button class="fav" data-action="fav" aria-label="Favourite Spaghetti Carbonara">♥</button>
+        <span class="badge">Dinner</span>
+      </div>
+      <div class="card-body">
+        <h3>Spaghetti Carbonara</h3>
+        <p class="meta">⏱ 30 min</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" data-action="view">View Recipe</button>
+          <button class="btn btn-ghost" data-action="plan">＋ Plan</button>
+        </div>
+      </div>
+    </article>
+    <!-- ===== RECIPE CARD 8: Grilled Lemon Salmon ===== -->
+    <article class="card reveal" style="--d:70ms" data-id="8">
+      <div class="card-img">
+        <!-- 👉 IMAGE: change the file name inside src="" to use a different picture -->
+        <img src="images/grilled_lemon_salmon.webp" alt="Grilled Lemon Salmon" loading="lazy">
+        <button class="fav" data-action="fav" aria-label="Favourite Grilled Lemon Salmon">♥</button>
+        <span class="badge">Dinner</span>
+      </div>
+      <div class="card-body">
+        <h3>Grilled Lemon Salmon</h3>
+        <p class="meta">⏱ 25 min</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" data-action="view">View Recipe</button>
+          <button class="btn btn-ghost" data-action="plan">＋ Plan</button>
+        </div>
+      </div>
+    </article>
+    <!-- ===== RECIPE CARD 9: Chicken Biryani ===== -->
+    <article class="card reveal" style="--d:140ms" data-id="9">
+      <div class="card-img">
+        <!-- 👉 IMAGE: change the file name inside src="" to use a different picture -->
+        <img src="images/chicken_biryani.webp" alt="Chicken Biryani" loading="lazy">
+        <button class="fav" data-action="fav" aria-label="Favourite Chicken Biryani">♥</button>
+        <span class="badge">Dinner</span>
+      </div>
+      <div class="card-body">
+        <h3>Chicken Biryani</h3>
+        <p class="meta">⏱ 60 min</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" data-action="view">View Recipe</button>
+          <button class="btn btn-ghost" data-action="plan">＋ Plan</button>
+        </div>
+      </div>
+    </article>
+    <!-- ===== RECIPE CARD 10: Chocolate Lava Cake ===== -->
+    <article class="card reveal" style="--d:210ms" data-id="10">
+      <div class="card-img">
+        <!-- 👉 IMAGE: change the file name inside src="" to use a different picture -->
+        <img src="images/chocolate_lava_cake.webp" alt="Chocolate Lava Cake" loading="lazy">
+        <button class="fav" data-action="fav" aria-label="Favourite Chocolate Lava Cake">♥</button>
+        <span class="badge">Desserts</span>
+      </div>
+      <div class="card-body">
+        <h3>Chocolate Lava Cake</h3>
+        <p class="meta">⏱ 25 min</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" data-action="view">View Recipe</button>
+          <button class="btn btn-ghost" data-action="plan">＋ Plan</button>
+        </div>
+      </div>
+    </article>
+    <!-- ===== RECIPE CARD 11: Mango Kulfi ===== -->
+    <article class="card reveal" style="--d:280ms" data-id="11">
+      <div class="card-img">
+        <!-- 👉 IMAGE: change the file name inside src="" to use a different picture -->
+        <img src="images/mango_kulfi.webp" alt="Mango Kulfi" loading="lazy">
+        <button class="fav" data-action="fav" aria-label="Favourite Mango Kulfi">♥</button>
+        <span class="badge">Desserts</span>
+      </div>
+      <div class="card-body">
+        <h3>Mango Kulfi</h3>
+        <p class="meta">⏱ 15 min</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" data-action="view">View Recipe</button>
+          <button class="btn btn-ghost" data-action="plan">＋ Plan</button>
+        </div>
+      </div>
+    </article>
+    <!-- ===== RECIPE CARD 12: Strawberry Cheesecake ===== -->
+    <article class="card reveal" style="--d:350ms" data-id="12">
+      <div class="card-img">
+        <!-- 👉 IMAGE: change the file name inside src="" to use a different picture -->
+        <img src="images/strawberry_cheesecake.webp" alt="Strawberry Cheesecake" loading="lazy">
+        <button class="fav" data-action="fav" aria-label="Favourite Strawberry Cheesecake">♥</button>
+        <span class="badge">Desserts</span>
+      </div>
+      <div class="card-body">
+        <h3>Strawberry Cheesecake</h3>
+        <p class="meta">⏱ 45 min</p>
+        <div class="card-actions">
+          <button class="btn btn-primary" data-action="view">View Recipe</button>
+          <button class="btn btn-ghost" data-action="plan">＋ Plan</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- Shown when search / filter finds nothing -->
+  <div class="empty" id="empty" hidden>
+    <div>🔍</div><h3>No recipes match your search</h3><p>Try a different name or category.</p>
+    <button class="btn btn-primary" id="reset">Clear filters</button>
+  </div>
+</div></section></main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><img src="images/stackly_logo_white_cropped.png" alt="Stackly" width="196" height="56" class="logo-img"></a>
+      <p>Discover recipes you'll love, build your weekly meal plan, and make every meal count.</p>
+    </div>
+    <nav class="footer-col" aria-label="Explore">
+      <h3>Explore</h3>
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore Recipes</a>
+      <a href="meal-plan.html">My Meal Plan</a>
+    </nav>
+    <nav class="footer-col" aria-label="Categories">
+      <h3>Categories</h3>
+      <a href="explore.html?cat=Breakfast">Breakfast</a>
+      <a href="explore.html?cat=Lunch">Lunch</a>
+      <a href="explore.html?cat=Dinner">Dinner</a>
+      <a href="explore.html?cat=Desserts">Desserts</a>
+    </nav>
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <p>MMR Complex, Periyakollappatty,<br>Chinna Thirupathi, Salem,<br>Tamil Nadu 636008</p>
+      <a href="tel:+917010792745">07010792745</a>
+      <a href="mailto:hello@stackly.example">hello@stackly.example</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© 2026 Stackly. All rights reserved.</p>
+      <p><a href="#">Back to top ↑</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript: data first, then shared code, then this page's code -->
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/explore.js"></script>
+</body>
+</html>

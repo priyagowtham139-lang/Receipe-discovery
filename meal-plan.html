@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Meal Plan – Stackly</title>
+  <!-- Google Fonts (needs internet; the site falls back to system fonts without it) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- All styling lives in this one file -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- Animated glowing blobs behind the page (pure decoration) -->
+<div class="blobs"><i></i><i></i><i></i></div>
+
+<!-- ================= NAVIGATION BAR (same on every page) ================= -->
+<header class="navbar"><div class="container nav-inner">
+  <a href="index.html" class="logo"><img src="images/stackly_logo_white_cropped.png" alt="Stackly" width="196" height="56" class="logo-img"></a>
+  <!-- Hamburger button: only visible on phones -->
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="explore.html">Explore Recipes</a>
+    <!-- The red number = how many recipes are in the meal plan (filled in by app.js) -->
+    <a href="meal-plan.html">My Meal Plan <b id="planBadge" class="count">0</b></a>
+  </nav>
+</div></header>
+
+<main><section class="section page-top"><div class="container narrow">
+  <h1 class="title">My meal plan</h1>
+
+  <!-- Total recipes + total minutes (filled by js/mealplan.js) -->
+  <div class="summary" id="summary"></div>
+
+  <!-- The selected recipes appear here as <li> rows (built by js/mealplan.js).
+       Each row copies the image, name, category and time of the recipe card you added. -->
+  <ul class="plan-list" id="planList"></ul>
+
+  <!-- Shown when nothing has been added yet -->
+  <div class="empty" id="planEmpty" hidden>
+    <div>🍽️</div><h3>Your meal plan is empty</h3>
+    <p>Add recipes from the Explore page and they'll show up here.</p>
+    <a href="explore.html" class="btn btn-primary btn-lg">Explore Recipes</a>
+  </div>
+
+  <div class="center"><button class="btn btn-danger" id="clearAll" hidden>Clear meal plan</button></div>
+</div></section></main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo"><img src="images/stackly_logo_white_cropped.png" alt="Stackly" width="196" height="56" class="logo-img"></a>
+      <p>Discover recipes you'll love, build your weekly meal plan, and make every meal count.</p>
+    </div>
+    <nav class="footer-col" aria-label="Explore">
+      <h3>Explore</h3>
+      <a href="index.html">Home</a>
+      <a href="explore.html">Explore Recipes</a>
+      <a href="meal-plan.html">My Meal Plan</a>
+    </nav>
+    <nav class="footer-col" aria-label="Categories">
+      <h3>Categories</h3>
+      <a href="explore.html?cat=Breakfast">Breakfast</a>
+      <a href="explore.html?cat=Lunch">Lunch</a>
+      <a href="explore.html?cat=Dinner">Dinner</a>
+      <a href="explore.html?cat=Desserts">Desserts</a>
+    </nav>
+    <div class="footer-col">
+      <h3>Contact</h3>
+      <p>MMR Complex, Periyakollappatty,<br>Chinna Thirupathi, Salem,<br>Tamil Nadu 636008</p>
+      <a href="tel:+917010792745">07010792745</a>
+      <a href="mailto:hello@stackly.example">hello@stackly.example</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">
+      <p>© 2026 Stackly. All rights reserved.</p>
+      <p><a href="#">Back to top ↑</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- JavaScript: data first, then shared code, then this page's code -->
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/mealplan.js"></script>
+</body>
+</html>
